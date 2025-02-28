@@ -1,5 +1,78 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --grey950: #111432;
+  --grey900: #23263b;
+  --grey800: #36395a;
+  --grey700: #484c7a;
+  --grey600: #5a5e9a;
+  --grey500: #777aaf;
+  --grey400: #9698c3;
+  --grey300: #b6b7d5;
+  --grey200: #d6d6e7;
+  --grey100: #f5f5fa;
+  --grey50: #fcfcfd;
+  --pink900: #59063d;
+  --pink800: #88085c;
+  --pink700: #b80979;
+  --pink600: #e90a96;
+  --pink500: #f82caa;
+  --pink400: #fb5abc;
+  --pink300: #fd89ce;
+  --pink200: #feb9e2;
+  --pink100: #ffeaf6;
+  --nebula900: #141d61;
+  --nebula800: #1e2b8f;
+  --nebula700: #2b3cbb;
+  --nebula600: #3c4fe0;
+  --nebula500: #5468ff;
+  --nebula400: #7c8aff;
+  --nebula300: #a3acff;
+  --nebula200: #cacfff;
+  --nebula100: #f2f3ff;
+  --blue900: #00526c;
+  --blue800: #00769b;
+  --blue700: #009bcb;
+  --blue600: #0db7eb;
+  --blue500: #2cc8f7;
+  --blue400: #5adaff;
+  --blue300: #89e5ff;
+  --blue200: #b9efff;
+  --blue100: #e8faff;
+  --green900: #005e36;
+  --green800: #028950;
+  --green700: #06b66c;
+  --green600: #0de589;
+  --green500: #5feb9e;
+  --green400: #88f0b3;
+  --green300: #aaf4c8;
+  --green200: #c9f8de;
+  --green100: #e6fcf3;
+  --orange900: #963209;
+  --orange800: #bf470a;
+  --orange700: #e8600a;
+  --orange600: #f78125;
+  --orange500: #faa04b;
+  --orange400: #fcbc73;
+  --orange300: #fed59a;
+  --orange200: #ffe9c3;
+  --orange100: #fff9ec;
+  --red900: #83111e;
+  --red800: #ab1325;
+  --red700: #d4142a;
+  --red600: #ee243c;
+  --red500: #f4495d;
+  --red400: #f86e7e;
+  --red300: #fc95a1;
+  --red200: #febdc5;
+  --red100: #ffe6e9;
+
+  --break-medium: 767px;
+}
+
 .App {
-  text-align: center;
+  text-align: left;
+  margin: 1rem 2rem 1rem 2rem;
 }
 
 .App-logo {
@@ -36,3 +109,143 @@
     transform: rotate(360deg);
   }
 }
+
+.ais-SearchBox {
+  width: 42%;
+}
+
+.ais-SearchBox-input {
+  width: 100%;
+}
+
+.ais-Stats-text {
+  font-size: .75rem;
+}
+
+.refineAndHits {
+  display: flex;
+  flex-direction: row;
+  flex: 1 3;
+  gap: 1rem;
+  margin-top: 1rem;
+
+}
+
+.refinements {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-left: 1rem;
+  width: 25%;
+  border: 1px solid var(--grey200);
+}
+
+.ais-RefinementList-label {
+  text-transform: capitalize;
+
+}
+
+.hits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Optional spacing between items */
+  justify-content: space-between; /* Even spacing */
+}
+
+.img {
+  height: 10rem;
+}
+
+.desc {
+  text-align: left;
+}
+
+.ais-Hits-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: left;
+  padding: 0;
+  margin: 0;
+}
+
+.ais-Hits-item {
+  flex: 1 1 calc(33.33% - 1rem); /* Ensure 3 items per row */
+  max-width: calc(33.33% - 1rem); /* Avoid exceeding */
+  box-sizing: border-box;
+  
+}
+
+.ais-Hits-item:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.ais-Hits-item article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: .75rem;
+}
+
+.ais-RangeInput-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  gap: 25%;
+  justify-content: right;
+}
+
+.ais-HitsPerPage, .ais-SortBy {
+  font-size: 10px;
+
+}
+
+.ais-HitsPerPage-select {
+  /* height: 32px !important; */
+}
+
+.sortAndItems {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  gap: 2rem;
+  height: 32px !important;
+}
+
+.ais-MenuSelect-select, .ais-HitsPerPage-select, .ais-SortBy-select {
+  height: 32px;
+}
+
+.rating-menu {
+  list-style: none; /* Removes bullets */
+  padding: 0;
+  margin: 0rem;
+}
+
+.rating-menu li {
+  display: flex;
+  align-items: center; /* Aligns stars and text */
+  gap: 8px; /* Adds spacing between stars and text */
+}
+
+.rating-menu a {
+  text-decoration: none; /* Removes underline */
+  color: black; /* Changes link color */
+  /* font-weight: bold; */
+}
+
+.rating-menu a:hover {
+  color: #f39c12; /* Adds hover effect */
+}
+
+.ratingText {
+  font-size: 14px;
+  margin: .33rem;
+}
+
