@@ -39,9 +39,6 @@ export function RatingMenu(props) {
                   event.preventDefault();
                   refine(item.value); // Ensure the selection properly includes 1-5, 2-5, etc.
                 }}
-                style={{
-                  fontWeight: item.isRefined ? "bold" : "normal",
-                }}
               >
                 {item.count}
               </a>

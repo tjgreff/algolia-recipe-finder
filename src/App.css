@@ -136,13 +136,19 @@
   flex-direction: column;
   padding: 1rem;
   padding-left: 1rem;
-  width: 25%;
+  max-width: 20%;
   border: 1px solid var(--grey200);
 }
 
 .ais-RefinementList-label {
   text-transform: capitalize;
 
+}
+
+.toggleLabel {
+  font-weight: bold;
+  color: goldenrod;
+  margin-top: 2rem;
 }
 
 .hits {
@@ -173,6 +179,7 @@
   flex: 1 1 calc(33.33% - 1rem); /* Ensure 3 items per row */
   max-width: calc(33.33% - 1rem); /* Avoid exceeding */
   box-sizing: border-box;
+  max-height: fit-content;
   
 }
 
@@ -247,5 +254,43 @@
 .ratingText {
   font-size: 14px;
   margin: .33rem;
+}
+
+.btn {
+  margin: .5rem;
+}
+
+.similar-hit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.similar-img {
+  max-width: 5rem;
+}
+
+.ais-LookingSimilar-list {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.similar-title {
+  background-color: blue;
+  color: white;
+  margin: 0;
+  height: 2.5rem;
+  justify-content: center !important;
+}
+
+.similar-recipes {
+  color: black;
+  align-items: center;
+  
+}
+
+.ais-Hits-banner-image {
+  width: 100%;
 }
 
