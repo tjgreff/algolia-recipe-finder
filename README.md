@@ -6,36 +6,32 @@ This project was created by Tyler Greff as a part of the onboarding process for 
 
 ### Mandatory
 
-- [] 
-- []
-- []
-- [] Data Transformation
-- [] Search Configuration (Searchable Attributes, Custom Ranking)
-- [] InstantSearch (any flavor) (REACT)
-- [] Autocomplete
-- [] Query Suggestions
-- [] Rules
-- [] Facets
-- [] Sort-by
+- [ x ] Data Transformation
+- [x] Search Configuration (Searchable Attributes, Custom Ranking)
+- [ ] InstantSearch (any flavor) (REACT)
+- [ ] Autocomplete
+- [ ] Query Suggestions
+- [ ] Rules
+- [ ] Facets
+- [ ] Sort-by
 
 ### Recommended
 
-- [] Utilize FIG to mock event data
-- [] Recommend
-- [] Query Categorization (Not Applicable)
-- [] Dynamic Re-ranking
-- [] NeuralSearch
+- [ ] Utilize FIG to mock event data
+- [ ] Recommend
+- [ ] Query Categorization (Not Applicable)
+- [ ] Dynamic Re-ranking
+- [ ] NeuralSearch
 
 ### Optional
 
-- [] Geo-location
-- [] Federated Search
-- []
+- [ ] Geo-location
+- [ ] Federated Search
 
 ### MISC.
 
-- [] Recommended Search
-- [] Custom React Widgets
+- [x] Recommended Search
+- [x] Custom React Widgets
 
 
 
