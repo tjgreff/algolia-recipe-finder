@@ -1,0 +1,201 @@
+:root {
+    /* Color Variables - Keep the existing color palette */
+    --black: #000;
+    --white: #fff;
+    /* ... (rest of the existing color variables) */
+  
+    /* Breakpoints */
+    --bp-mobile: 480px;
+    --bp-tablet: 768px;
+    --bp-desktop: 1024px;
+  
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+  
+    /* Typography */
+    --font-size-sm: 0.75rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+  }
+  
+  /* Global Resets and Base Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--grey900);
+    background-color: var(--grey50);
+  }
+  
+  .App {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
+  }
+  
+  /* Responsive Search and Refinement Layout */
+  .refineAndHits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+  }
+  
+  .refinements {
+    width: 100%;
+    border: 1px solid var(--grey200);
+    padding: var(--spacing-sm);
+    background-color: var(--white);
+  
+    @media (min-width: 1024px) {
+      max-width: 250px;
+      flex-shrink: 0;
+    }
+  }
+  
+  /* Responsive Search Box */
+  .ais-SearchBox {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+  
+    &-input {
+      width: 100%;
+      padding: var(--spacing-xs);
+      border: 1px solid var(--grey300);
+      border-radius: 4px;
+    }
+  }
+  
+  /* Hits Grid */
+  .hits, .ais-Hits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    width: 100%;
+  }
+  
+  .ais-Hits-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grey200);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+  
+    article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--spacing-sm);
+      gap: var(--spacing-xs);
+    }
+  }
+  
+  /* Image Styling */
+  .img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--grey200);
+  }
+  
+  /* Pagination and Controls */
+  .pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  
+  .sortAndItems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Similar Recipes */
+  .similar-recipes {
+    margin-top: var(--spacing-sm);
+    background-color: var(--grey100);
+    border-radius: 8px;
+    padding: var(--spacing-xs);
+  }
+  
+  .ais-LookingSimilar-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+  }
+  
+  .similar-hit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 150px;
+  }
+  
+  .similar-img {
+    max-width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Buttons */
+  .btn {
+    background-color: var(--nebula500);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: var(--nebula600);
+    }
+  }
+  
+  /* Responsive Typography */
+  h1, h2, h3 {
+    color: var(--grey950);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  /* Utility Classes */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }

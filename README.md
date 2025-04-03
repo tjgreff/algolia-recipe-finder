@@ -17,10 +17,10 @@ This project was created by Tyler Greff as a part of the onboarding process for 
 
 ### Recommended
 
-- [ ] Utilize FIG to mock event data
+- [x] Utilize FIG to mock event data
 - [x] Recommend
+- [x] Dynamic Re-ranking
 - [ ] Query Categorization (Not Applicable)
-- [ ] Dynamic Re-ranking
 - [ ] NeuralSearch
 
 ### Optional
@@ -30,50 +30,64 @@ This project was created by Tyler Greff as a part of the onboarding process for 
 
 ### MISC.
 
-- [x] Recommended Search
 - [x] Custom React Widgets
+    - Slider Widget - Cook Time
+    - Rating Menu
+
+## Process
+
+1. Scraped Data from AllRecipes and FoodNetwork sites by crawling their sitemap and subsequent pages to pull required data
+
+2. Imported the data through two varying .CSV structures (one for each site)
+
+2. Used **Transformer** to:
+    1. Breakdown ingredients into nested arrays for facet filtering
+    2. Separate directions into individual array attributes
+    3. Calculate and assign difficulty levels to records missing the field using a calculation on the prep and cook times for each recipe
+    4. Create a 'Chefs Favorite' tag that must have a minimum rating and madeCount.
+    5. Find and highlight 'empty' records for removal via API
+
+3. Use the JS client to call the Search API and remove records from the Index that have *null* data
+
+4. **Configure the Core Engine** and relevance settings including:
+    1. Searchable Ingredients: title; ingredients; tags; description; author
+    2. Custom Rankings: rating; madeCount; ratingCount
+    3. Synonyms: manual and AI-generated
+    4. Facets: Chef's Favorite; cook/prep time; ingredients; difficulty; rating; tags
+    5. No Results: All Optional
+
+5. Created **Replicas** (standard) for sorting on the front-end
+    - Rank (desc)
+    - Rank (asc)
+
+6. Created a few **Rules** to showcase merchandising abilities
+    1. **lemons:** Displays a lemon-related banner (Rules) at the top of the hits list [Rules]
+    2. **winter:** Boosts three hot winter drinks to the top of the search results [Rules]
+
+7. Added **Event Tracking** to the InstantSearch UI (front-end) to assist with the collection of click and conversio events
+
+8. Used **FIG** to generate ~15k events to train the various **Recommend** models
+
+9. Specified queries (via FIG) with lower click positiont to trigger **Dynamic Reranking** for the following queries:
+    - 'potatoes'
+    - 'winter'
 
 
+## UI Components
+- Search bar - Search as you Type
+- Sort By - Default is 'Feature' but just standard results
+- Pagination - Default of 24 results
+- Facets and Filters - Includes InstantSearch widgets and custom components
+- Recipe Card
+    - Title; Image; Description
+    - Chef's Favorite
+    - Make this Recipe (conversion event)
+    - View Similar (Looking Similar - Recommend Model)
 
 ## Queries to Try
 
-1. lemons : Displays a lemon-related banner (Rules) at the top of the hits list [Rules]
+1. **lemons:** Displays a lemon-related banner (Rules) at the top of the hits list.
 
-2. winter : Boosts three hot winter drinks to the top of the search results [Rules]
+2. **winter:** Boosts three hot winter drinks to the top of the search results.
 
----
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **potato:** To showcase dynamic reranking (not noticeable on the front per-se)

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import { algoliasearch } from "algoliasearch";
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 
@@ -9,16 +9,16 @@ import {  InstantSearch,
           HitsPerPage, 
           LookingSimilar,
           Pagination, 
-          RangeInput, 
           RefinementList,
           SearchBox,
           SortBy,
           Stats,
-          ToggleRefinement
+          ToggleRefinement,
         } from "react-instantsearch";
 
 import { RatingMenu } from "./RatingMenu";
-// import { CustomRefinementList } from "./CustomRefinementList"
+import  RangeSlider  from './RangeSlider';
+
 
 import './App.css';
 import 'instantsearch.css/themes/satellite.css';
@@ -28,17 +28,20 @@ const searchClient = algoliasearch("D2CK5J9GUK", "5efde727d6476018975c7d8e9f1b9e
 
 function Hit({ hit, sendEvent }) {
   const [showSimilar, setShowSimilar] = React.useState(false);
-  console.log("Hit objectID:", hit.objectID);
-
 
   return (
     <article href={hit.url}>
-      {/* <p>{hit.categories[0]}</p> */}
-      <h1><Highlight attribute="title" hit={hit} /></h1>
+      <h1>
+        <Highlight attribute="title" hit={hit} />
+      </h1>
       <img src={hit.image} alt={hit.name} className="img"/>
+      <p class="rating"><b>Rating:</b> {hit.rating} / 5 ⭐</p>
+      <div>
+          {hit["Chefs Favorite"] && (
+            <span className="chefsFavorite" title="chefsFavorite">Chef's Favorite 👨‍🍳</span>
+          )}
+        </div>
       <p className="desc">{hit.description}</p>
-      <p>Rating: {hit.rating} ⭐</p>
-      {/* <a href={hit.url}><button>View Recipe</button></a> */}
       <button className="btn" onClick={() =>
           sendEvent("conversion", hit, "Recipe Made")
         }
@@ -47,20 +50,19 @@ function Hit({ hit, sendEvent }) {
       <button className="btn" onClick={() => setShowSimilar(!showSimilar)}>
         {showSimilar ? 'Hide Similar Recipes' : 'Show Similar Recipes'}
       </button>
+
       
       {showSimilar && (
-        <div className="similar-recipes">
-          <LookingSimilar
-            objectIDs={[hit.objectID]}
-            limit={3}
-            itemComponent={SimilarHit}
-            headerComponent={() => (
-              <h2 className={"similar-title"}>
-                Similar Recipes
-              </h2>
-            )}
-          />
-        </div>
+        <LookingSimilar
+          objectIDs={[hit.objectID]}
+          limit={2}
+          itemComponent={SimilarHit}
+          headerComponent={() => (
+            <h2 className={"similar-title"}>
+              Looking Similar
+            </h2>
+          )}
+        />
       )}
       
     </article>
@@ -85,33 +87,38 @@ export default function App() {
       
       <InstantSearch searchClient={searchClient} indexName="all_recipes" insights={true}>
         <Configure 
-          hitsPerPage={12}
           maxValuesPerFacet={51}
         />
-        <SearchBox class="searchBox"
-          placeholder="Search for a recipe or ingredient..."
-        />
-        <Stats />
-        <div class="pages">
-          <Pagination />
-          <div class="sortAndItems">
-            <SortBy
-              items={[
-                //  { label: 'Featured', value: 'instant_search' },
-                { label: 'Featured', value: 'all_recipes' },
-                { label: 'Rating (desc)', value: 'all_recipes_ranking_desc' },
-                { label: 'Rating (asc)', value: 'all_recipes_ranking_asc' },
-              ]}
-            />
-            <HitsPerPage
-              items={[
-                { label: '12 results', value: 12 },
-                { label: '24 results', value: 24, default: true },
-                { label: '48 results', value: 48 },
-                { label: '96 results', value: 96 },
-              ]}
-            />
+        {/* <CustomIngredientSearch /> */}
+
+        <div class="searchSort">
+          <SearchBox
+            placeholder="Search for a recipe or ingredient..."
+            searchAsYouType={true}
+          />
+          <div class="sort">
+              <SortBy
+                items={[
+                  //  { label: 'Featured', value: 'instant_search' },
+                  { label: 'Featured', value: 'all_recipes' },
+                  { label: 'Rating (desc)', value: 'all_recipes_ranking_desc' },
+                  { label: 'Rating (asc)', value: 'all_recipes_ranking_asc' },
+                ]}
+              />
+              <HitsPerPage
+                items={[
+                  { label: '12 results', value: 12 },
+                  { label: '24 results', value: 24, default: true },
+                  { label: '48 results', value: 48 },
+                  { label: '96 results', value: 96 },
+                ]}
+              />
           </div>
+        </div>
+        <Stats />
+
+        <div class="collectionsBar">
+          
         </div>
 
         <div className="refineAndHits">
@@ -132,14 +139,16 @@ export default function App() {
               searchable={true}
               searchablePlaceholder="Sugar, Butter, Milk, Eggs..."
             />
-            <h3>Cook Time</h3>
-            <RefinementList 
+            {/* <RefinementList 
               attribute="Cook Time"
               operator={'or'}
               limit={5}
               showMore={true}
               showMoreLimit={10}
-            />
+            /> */}
+            <h3>Cook Time</h3>
+            <RangeSlider attribute="Cook Time" />
+
             <h3>Recipe Tags</h3>
             <RefinementList 
               attribute="tags"
@@ -148,14 +157,15 @@ export default function App() {
               showMore={true}
               showMoreLimit={25}
               searchable={true}
-              searchablePlaceholder="Breakfast, Lunch, Dinner, Quick Meals..."
+              searchablePlaceholder="Breakfast, Lunch, Dinner..."
             />
-            {/* <RangeInput attribute="Cook Time" /> */}
             <ToggleRefinement attribute="Chefs Favorite" on={true} label="CHEF'S FAVORITE" className="toggleLabel"/>
 
           </div>
           <Hits className="hits" hitComponent={Hit} />
         </div>
+
+        <Pagination />
 
       </InstantSearch>
       

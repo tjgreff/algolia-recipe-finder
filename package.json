@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/react-spectrum": "^3.39.0",
+    "@algolia/autocomplete-js": "^1.18.1",
+    "@algolia/autocomplete-theme-classic": "^1.18.1",
     "@algolia/ui-components-horizontal-slider-react": "^1.2.3",
     "@algolia/ui-components-horizontal-slider-theme": "^1.2.3",
     "@testing-library/dom": "^10.4.0",
@@ -17,6 +20,7 @@
     "react-instantsearch-hooks": "^6.47.3",
     "react-instantsearch-hooks-web": "^6.47.3",
     "react-scripts": "5.0.1",
+    "react-spectrum": "^1.2.6",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
